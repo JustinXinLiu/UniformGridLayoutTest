@@ -1,0 +1,43 @@
+﻿<Page x:Class="UniformGridLayoutTest.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:UniformGridLayoutTest"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Spacing="40">
+            <Rectangle Height="200" />
+
+            <muxc:ItemsRepeater Margin="24" ItemsSource="{x:Bind _entities}">
+                <muxc:ItemsRepeater.ItemTemplate>
+                    <DataTemplate x:DataType="local:Entity">
+                        <!--  This is the same xaml inside the Card UserControl  -->
+                        <!--<Border Height="200" Background="LightBlue">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="40"
+                                       FontWeight="Black"
+                                       Text="{x:Bind Id}" />
+                        </Border>-->
+
+                        <local:Card CardName="{x:Bind Id}" />
+                    </DataTemplate>
+                </muxc:ItemsRepeater.ItemTemplate>
+
+                <muxc:ItemsRepeater.Layout>
+                    <muxc:UniformGridLayout ItemsStretch="Fill"
+                                            MinColumnSpacing="24"
+                                            MinItemWidth="256"
+                                            MinRowSpacing="24"
+                                            Orientation="Horizontal" />
+                </muxc:ItemsRepeater.Layout>
+            </muxc:ItemsRepeater>
+
+            <Rectangle Height="2400" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>
